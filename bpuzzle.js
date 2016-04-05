@@ -48,10 +48,18 @@
         puzzle.outerHTML = puzzle_field.outerHTML;
     }
 	
-	function is_game_finished(){
+	function is_game_finished() {
+		var win = 0;
 		var winner_field = create_array();
-		if (f === winner_field) { alert('Вы выиграли!');
-            run(); }
+		if (winner_field.length === f.length){
+			for (var i = 0; i < f.length; i++){
+				if (f[i] === winner_field[i]) {
+					win++;
+				}
+			}
+		}
+
+		if (win === 16) { alert('Вы выиграли!'); }
 	}
 	
 	function handler(event){
@@ -82,7 +90,6 @@
 			case KEY_CODE.DOWN:
 				for (var j=12;j<16;j++){
 					if (em === j) {
-                        //move_alert();
                         error = true; }
 				}
 				if (!error) {
@@ -91,7 +98,6 @@
 			case KEY_CODE.LEFT:
 				for (var k=0;k<13;k=k+4){
 					if (em === k) {
-                        //move_alert();
                         error = true; }
 				}
 				if (!error) {
@@ -100,7 +106,6 @@
 			case KEY_CODE.RIGHT:
 				for (var n=3;n<16;n=n+4){
 					if (em === n) {
-                        //move_alert();
                         error = true; }
 				}
                 if (!error) {
@@ -110,9 +115,9 @@
                 error = false;
                 alert('Управление только клавишами WSAD.');
 		}
-		print_field();
-		is_game_finished();
-	}
+        print_field();
+        is_game_finished();
+    }
 	
 	window.addEventListener('keydown', handler, false);
 
