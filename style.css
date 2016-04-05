@@ -29,65 +29,37 @@ body {
     overflow: hidden;
 }
 
-.col1 {
-    background-image: url(img/1.jpg);
-}
+/*.col { background-image: url(img/empty.jpg); }*/
 
-.col2 {
-    background-image: url(img/2.jpg);
-}
+.col1 { background-image: url(img/1.jpg); }
 
-.col3 {
-    background-image: url(img/3.jpg);
-}
+.col2 { background-image: url(img/2.jpg); }
 
-.col4 {
-    background-image: url(img/4.jpg);
-}
+.col3 { background-image: url(img/3.jpg); }
 
-.col5 {
-    background-image: url(img/5.jpg);
-}
+.col4 { background-image: url(img/4.jpg); }
 
-.col6 {
-    background-image: url(img/6.jpg);
-}
+.col5 { background-image: url(img/5.jpg); }
 
-.col7 {
-    background-image: url(img/7.jpg);
-}
+.col6 { background-image: url(img/6.jpg); }
 
-.col8 {
-    background-image: url(img/8.jpg);
-}
+.col7 { background-image: url(img/7.jpg); }
 
-.col9 {
-    background-image: url(img/9.jpg);
-}
+.col8 { background-image: url(img/8.jpg); }
 
-.col10 {
-    background-image: url(img/10.jpg);
-}
+.col9 { background-image: url(img/9.jpg); }
 
-.col11 {
-    background-image: url(img/11.jpg);
-}
+.col10 { background-image: url(img/10.jpg); }
 
-.col12 {
-    background-image: url(img/12.jpg);
-}
+.col11 { background-image: url(img/11.jpg); }
 
-.col13 {
-    background-image: url(img/13.jpg);
-}
+.col12 { background-image: url(img/12.jpg); }
 
-.col14 {
-    background-image: url(img/14.jpg);
-}
+.col13 { background-image: url(img/13.jpg); }
 
-.col15 {
-    background-image: url(img/15.jpg);
-}
+.col14 { background-image: url(img/14.jpg); }
+
+.col15 { background-image: url(img/15.jpg); }
 
 .controls-button {
     margin-top: 35px;
