@@ -78,7 +78,7 @@
 		//}
 
 		switch(event.keyCode){
-			case KEY_CODE.UP:
+			case KEY_CODE.DOWN:
 				for (var i=0; i<4; i++){
 					if (em === i) {
                         //move_alert();
@@ -87,7 +87,7 @@
 				if (!error) {
                     f[em] = [f[em-4], f[em-4] = f[em]][0]; }
 			    break;
-			case KEY_CODE.DOWN:
+			case KEY_CODE.UP:
 				for (var j=12;j<16;j++){
 					if (em === j) {
                         error = true; }
@@ -95,7 +95,7 @@
 				if (!error) {
                     f[em] = [f[em+4], f[em+4] = f[em]][0]; }
 			    break;
-			case KEY_CODE.LEFT:
+			case KEY_CODE.RIGHT:
 				for (var k=0;k<13;k=k+4){
 					if (em === k) {
                         error = true; }
@@ -103,7 +103,7 @@
 				if (!error) {
                     f[em] = [f[em-1], f[em-1] = f[em]][0]; }
                 break;
-			case KEY_CODE.RIGHT:
+			case KEY_CODE.LEFT:
 				for (var n=3;n<16;n=n+4){
 					if (em === n) {
                         error = true; }
