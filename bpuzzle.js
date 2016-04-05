@@ -113,7 +113,7 @@
 			    break;
             default:
                 error = false;
-                alert('Управление только клавишами WSAD.');
+                //alert('Управление только клавишами WSAD.');
 		}
         print_field();
         is_game_finished();
