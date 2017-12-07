@@ -27,6 +27,7 @@ def personal_area():
     if current_user.is_authenticated:
         vacation_days = current_user.vacation_days
 
+        # request all vacation bids per user
         bids = Bid.query.filter_by(
             user_id=current_user.id, is_visible=True).all()
 
@@ -52,21 +53,35 @@ def view_bid():
 @login_required
 def new_bid():
     if request.method == 'POST':
+        # request user for creating bid
         user = User.query.filter_by(username=current_user.username).first()
         form = BidForm(request.form)
+
         if form.validate():
             form.user = user
+            # create bid object
             bid = Bid(user=user, **form.data)
 
+            # updating user vacation days
             User.query.filter_by(
                 id=user.id
             ).update({'vacation_days': user.vacation_days - form.vac_days.data})
 
             db.session.add(bid)
             db.session.commit()
-            vac_date = \
-                Bid.query.filter_by(vac_date=bid.vac_date).first().vac_date
-            flash('Vacation "{}" created!'.format(vac_date))
+
+            # check commit to db
+            vac_date = Bid.query.filter_by(
+                vac_date=bid.vac_date
+            ).filter_by(
+                user_id=user.id
+            ).first().vac_date
+
+            if vac_date:
+                flash('Vacation "{}" created!'.format(vac_date))
+            else:
+                flash('Vacation did not created!')
+
             return redirect(url_for('home.personal_area'))
         else:
             return render_template('new_bid.html', form=form)
@@ -106,9 +121,12 @@ def delete_bid():
         bid = Bid.query.filter_by(id=bid_id).first()
         min_days = bid.vac_date.day - datetime.date.today().day
         # TODO: Create check vac_date that is earlier than bid_date
+
+        # check the number of days before vacation
         if min_days > 3:
             bid.is_visible = False
 
+            # updating user vacation days
             User.query.filter_by(
                 id=current_user.id
             ).update(
@@ -128,6 +146,7 @@ def user_profile():
     if request.method == 'GET':
         return render_template('user_profile.html', form=BackwardForm())
 
+    # feedback from administrators
     if request.method == 'POST':
         form = BackwardForm(request.form)
         if form.validate_on_submit():

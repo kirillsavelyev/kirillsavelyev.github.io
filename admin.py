@@ -18,10 +18,12 @@ admin = Blueprint('admin', __name__)
 @login_required
 def statistics():
     if current_user.is_admin:
+        # request all years from db
         years_t = db.session.query(
             db.func.strftime('%Y', Bid.vac_date)
         ).distinct().all()
 
+        # need transformation to list, because db returns tuple
         years = []
         for year in years_t:
             years.append(year[0])
@@ -33,6 +35,8 @@ def statistics():
 
         elif request.method == 'POST':
             year = request.form['year']
+
+            # request vacation dates and days per year
             bids = db.session.query(
                 db.func.strftime('%m', Bid.vac_date),
                 db.func.sum(Bid.vac_days)

@@ -23,6 +23,9 @@ from wtforms.validators import \
 # https://wtforms-alchemy.readthedocs.org/en/latest/introduction.html
 # http://wtforms-alchemy.readthedocs.org/en/latest/configuration.html#modelform-meta-parameters
 
+# forms for filling in the site
+# form creation and validation of completed data
+
 
 class BidForm(FlaskForm):
     vac_date = DateField(
@@ -41,6 +44,7 @@ class BidForm(FlaskForm):
     )
 
     def validate(self):
+        # check available vacation days
         vd = User.query.filter_by(id=current_user.id).first().vacation_days
         vac_days_avail = vd - self.vac_days.data
 
