@@ -33,7 +33,7 @@ def personal_area():
         bids.sort(key=lambda item: item.vac_date)
 
         return render_template(
-            'home.html', vac_days=vacation_days, bids=bids)
+            'index.html', vac_days=vacation_days, bids=bids)
     else:
         return redirect(url_for('auth.login'))
 
