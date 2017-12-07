@@ -1,0 +1,31 @@
+{% macro render_field(field) %}
+      <div class="col-sm-2 control-label">
+          {{ field.label}}
+          {% if field.flags.required %}*{% endif %}
+      </div>
+      <div class="col-sm-10">{{ field(class="form-control", **kwargs)|safe }}
+      {% if field.errors %}
+        <ul class="errors">
+        {% for error in field.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      </div>
+{% endmacro %}
+
+{% macro render_bid(item) %}
+        <h3>Vacation start date <t></t>{{ item.vac_date }}</h3>
+        <em> <t></t></em>
+        <p>Vacation days <t></t>{{ item.vac_days }}</p>
+        <p>Bid created <t></t>{{ item.bid_date }}</p>
+{% endmacro %}
+
+{#{% macro render_years(years) %}#}
+{#        <div class="col-md-1">#}
+{#            <form method="POST" action="{{ url_for('admin.statistics') }}">#}
+{#                <input type="hidden" value="{{ bid.id }}" name = "id">#}
+{#                <input type="submit" value="{{ 'Delete bid' }}" class="btn btn-danger">#}
+{#            </form>#}
+{#        </div>#}
+{#{% endmacro %}#}

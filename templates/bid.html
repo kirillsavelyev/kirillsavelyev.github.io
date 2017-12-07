@@ -1,0 +1,24 @@
+{% extends '_base_template.html' %}
+
+{% block content_jumbotron %}
+    {% from "macros/render_field.html" import render_bid %}
+        <div class="row">
+            <div class="col-md-11">
+                {% if bid.id != 'csrf_token' %}
+                    {{ render_bid(bid) }}
+                {% endif %}
+            </div>
+            {% if current_user.id == bid.user_id %}
+            <div class="col-md-1">
+{#                <form method="POST" action="{{ url_for('home.edit_bid') }}">#}
+{#                    <input type="hidden" value="{{ bid.id }}" name = "id">#}
+{#                    <input type="submit" value="{{ 'Edit bid' }}" class="btn btn-default">#}
+{#                </form>#}
+                <form method="POST" action="{{ url_for('home.delete_bid') }}">
+                    <input type="hidden" value="{{ bid.id }}" name = "id">
+                    <input type="submit" value="{{ 'Delete bid' }}" class="btn btn-danger">
+                </form>
+            </div>
+            {% endif %}
+        </div>
+{% endblock %}

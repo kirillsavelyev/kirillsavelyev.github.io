@@ -1,0 +1,42 @@
+{% extends '_base_template.html' %}
+
+{% block content_jumbotron %}
+    <h2>Welcome to holidaymaker!</h2>
+    <h3>You have <b>{{ vac_days }}</b> days of vacation</h3>
+    <h3>Do the work. Plan your trip. Request a vacation.</h3>
+
+    {% if current_user.is_authenticated %}
+        <form method="GET" action="{{ url_for('home.new_bid') }}">
+            <input type="submit" value="{{ 'Create your vacation' }}"
+                   class="btn btn-default">
+        </form>
+    {% else %}
+        <h3>If you want to create request you need log on.</h3>
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+    {% from "macros/render_field.html" import render_field, render_bid %}
+
+    <div class="row">
+        <h4>Your bids</h4>
+        {% if not bids %}
+            <div class="col-md-4">You not have vacations yet
+            </div>
+        {% endif %}
+        {% for bid in bids %}
+            <div class="col-md-4">
+                {% if bid.id != 'csrf_token' %}
+                    {{ render_bid(bid) }}
+                {% endif %}
+                <form method="POST" action="{{ url_for('home.view_bid') }}">
+                    <input type="hidden" value="{{ bid.id }}" name = "id">
+                    <input type="submit" value="{{ 'View bid' }}" class="btn">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
