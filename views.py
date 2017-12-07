@@ -141,7 +141,7 @@ def user_profile():
 
             flash('Message will be send!')
 
-        return redirect(url_for('blog.user_profile'))
+        return redirect(url_for('home.user_profile'))
 
 
 # @home.errorhandler(404)
