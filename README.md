@@ -4,6 +4,8 @@ Vacations accounting system, base configuration.
 ## The application is deployed to pythonanywhere.com
 
 ## [URL](http://kirillsavelyev.pythonanywhere.com/)
-
+```
+Please register and try application
 You can see all the features from the administrator account
 admin/12345
+```
