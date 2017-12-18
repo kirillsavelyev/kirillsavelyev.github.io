@@ -44,15 +44,16 @@ class BidForm(FlaskForm):
     )
 
     def validate(self):
-        if not self.vac_date.data or not self.vac_days.data:
+        message = 'You dib not enter any data or enter wrong value'
+        if not self.vac_date.data:
             self.vac_date.errors = list(self.vac_date.errors)
+            self.vac_date.errors.append(message)
+
+        if not self.vac_days.data:
             self.vac_days.errors = list(self.vac_days.errors)
-            self.vac_date.errors.append(
-                'You dib not enter any data or enter wrong value'
-            )
-            self.vac_days.errors.append(
-                'You did not enter any data or enter wrong value'
-            )
+            self.vac_days.errors.append(message)
+
+        if self.vac_days.errors or self.vac_date.errors:
             return False
 
         # check available vacation days
