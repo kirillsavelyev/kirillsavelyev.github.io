@@ -31,7 +31,7 @@
                 {% if bid.id != 'csrf_token' %}
                     {{ render_bid(bid) }}
                 {% endif %}
-                <form method="POST" action="{{ url_for('home.view_bid') }}">
+                <form method="GET" action="{{ url_for('home.view_bid') }}">
                     <input type="hidden" value="{{ bid.id }}" name = "id">
                     <input type="submit" value="{{ 'View bid' }}" class="btn">
                 </form>

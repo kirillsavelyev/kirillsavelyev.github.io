@@ -30,8 +30,10 @@ def personal_area():
         # request all vacation bids per user
         bids = Bid.query.filter_by(
             user_id=current_user.id, is_visible=True).all()
-
-        bids.sort(key=lambda item: item.vac_date)
+        try:
+            bids.sort(key=lambda item: item.vac_date)
+        except TypeError:
+            pass
 
         return render_template(
             'index.html', vac_days=vacation_days, bids=bids)
@@ -39,14 +41,13 @@ def personal_area():
         return redirect(url_for('auth.login'))
 
 
-@home.route('/view_bid', methods=['POST'])
+@home.route('/view_bid', methods=['GET', 'POST'])
 @login_required
 def view_bid():
-    if request.method == 'POST':
-        bid_id = request.form['id']
-        bid = Bid.query.filter_by(id=bid_id).first()
+    bid_id = request.args.get('id')
+    bid = Bid.query.filter_by(id=bid_id).first()
 
-        return render_template('bid.html', bid=bid)
+    return render_template('bid.html', bid=bid)
 
 
 @home.route('/new_bid', methods=['GET', 'POST'])
