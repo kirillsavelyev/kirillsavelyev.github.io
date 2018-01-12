@@ -7,5 +7,5 @@ Vacations accounting system, base configuration.
 ```
 Please register and try application
 You can see all the features from the administrator account
-admin/12345
+admin1/12345
 ```
