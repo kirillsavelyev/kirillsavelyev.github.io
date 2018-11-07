@@ -1,6 +1,6 @@
 Vacations accounting system, base configuration.
 
-## http://kirillsavelyev.github.io did not work
+## http://kirillsavelyev.github.io does not working
 ## The application is deployed to pythonanywhere.com
 
 ## [URL](http://kirillsavelyev.pythonanywhere.com/)
